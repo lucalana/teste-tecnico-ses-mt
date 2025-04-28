@@ -10,6 +10,9 @@
 </head>
 
 <body class="bg-secondary">
+    @auth
+        @include('default.navbar')
+    @endauth
     <div class="container">
         @yield('content')
     </div>
