@@ -56,6 +56,15 @@ Para garantir que tudo funcione corretamente siga as instruções de instalaçã
     ```
 
 -   Logar
-Use o usuário que vai ser criado na migration para logar.
-Email: test@gmail.com
-Password: password
+
+    Use o usuário que vai ser criado na migration para logar.
+    
+        Email: test@gmail.com
+
+        Senha: password
+
+- Na Aplicação 
+
+    - Dentro da aplicação é possível filtrar as tarefas entre todas, pendentes e concluídas
+    - É possível alterar uma tarefa de pendente para concluída, clicando no status ao lado do título da tarefa
+    - É possível editar uma tarefa, deletar e criar
