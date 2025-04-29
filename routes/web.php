@@ -16,4 +16,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [TaskController::class, 'index'])->name('home');
     Route::get('/alterar-status/{task}', [TaskController::class, 'toggleStatus'])->name('toggle.status');
     Route::delete('/deletar-task/{task}', [TaskController::class, 'deleteTask'])->name('delete.task');
+    Route::get('/editar-task/{task}', [TaskController::class, 'edit'])->name('edit.task');
+    Route::put('/editar-task/{task}', [TaskController::class, 'update'])->name('update.task');
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 
 class TaskController extends Controller
@@ -26,5 +27,18 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->back()->with('message', 'Tarefa "' . $task->title . '" apagada.');
+    }
+
+    public function edit(Task $task)
+    {
+        return view('task.edit', ['task' => $task]);
+    }
+
+    public function update(Task $task, UpdateTaskRequest $request)
+    {
+        $task->update($request->validated());
+
+        return to_route('home', ['status' => $task->status])
+            ->with('message', 'Tarefa "' . $task->title . '" alterada.');
     }
 }

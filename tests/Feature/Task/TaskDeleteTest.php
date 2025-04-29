@@ -5,7 +5,6 @@ use App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseEmpty;
 use function Pest\Laravel\delete;
-use function Pest\Laravel\get;
 
 it('should delete the task', function () {
     $user = User::factory()->create();

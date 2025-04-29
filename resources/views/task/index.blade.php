@@ -40,11 +40,15 @@
                                     {{ $task->description }}
                                 </span>
                                 <span class="d-flex justify-content-between pt-5">
-                                    <form action="{{ route('delete.task', $task->id) }}" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger btn-sm">Deletar</button>
-                                    </form>
+                                    <div class="d-flex flex-row gap-2">
+                                        <a href="{{ route('edit.task', $task->id) }}"
+                                            class="btn btn-secondary btn-sm">Editar</a>
+                                        <form action="{{ route('delete.task', $task->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm">Deletar</button>
+                                        </form>
+                                    </div>
                                     <span class="fs-6 fw-lighter">
                                         Criado em: {{ $task->created_at->format('d/m/Y') }}
                                     </span>
