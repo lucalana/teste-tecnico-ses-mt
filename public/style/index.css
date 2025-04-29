@@ -6,6 +6,7 @@
     background-color: #474b4f !important;
 }
 
-.badge-secondary:hover {
+.badge-light:hover {
     background-color: #53575b !important;
+    color: white !important;
 }

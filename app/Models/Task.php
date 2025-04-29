@@ -20,7 +20,7 @@ class Task extends Model
     #[Scope]
     protected function status(Builder $query, string $status = '')
     {
-        $status = empty($status) ? ['Concluído', 'Pendente'] : [$status];
+        $status = empty($status) ? ['Concluída', 'Pendente'] : [$status];
         $query->whereIn('status', $status);
     }
 }

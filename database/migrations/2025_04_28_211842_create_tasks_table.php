@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['Pendente', 'Concluído']);
+            $table->enum('status', ['Pendente', 'Concluída']);
             $table->timestamps();
         });
     }

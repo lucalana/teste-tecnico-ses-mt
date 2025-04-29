@@ -15,9 +15,16 @@ class TaskController extends Controller
 
     public function toggleStatus(Task $task)
     {
-        $task->status = $task->status == 'Concluído' ? 'Pendente' : 'Concluído';
+        $task->status = $task->status == 'Concluída' ? 'Pendente' : 'Concluída';
         $task->save();
+        return redirect()->back()
+            ->with('message', 'Tarefa "' . $task->title . '" marcada como ' . strtolower($task->status) . '.');
+    }
 
-        return redirect()->back();
+    public function deleteTask(Task $task)
+    {
+        $task->delete();
+
+        return redirect()->back()->with('message', 'Tarefa "' . $task->title . '" apagada.');
     }
 }

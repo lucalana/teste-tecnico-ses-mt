@@ -15,4 +15,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/', [TaskController::class, 'index'])->name('home');
     Route::get('/alterar-status/{task}', [TaskController::class, 'toggleStatus'])->name('toggle.status');
+    Route::delete('/deletar-task/{task}', [TaskController::class, 'deleteTask'])->name('delete.task');
 });

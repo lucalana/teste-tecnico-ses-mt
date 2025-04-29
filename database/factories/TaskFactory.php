@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'user_id' => User::factory(),
             'title' => fake()->sentence(2),
             'description' => fake()->realText(100),
-            'status' => fake()->randomElement(['Pendente', 'Concluído']),
+            'status' => fake()->randomElement(['Pendente', 'Concluída']),
         ];
     }
 }

@@ -14,7 +14,26 @@
     @auth
         @include('default.navbar')
     @endauth
-    <div class="container">
+    <div class="container position-relative">
+        @session('message')
+            <div class="position-relative">
+                <div class="position-absolute top-0 end-0">
+                    <div class="toast align-items-center fade show" role="alert" data-bs-autohide="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ $value }}
+                            </div>
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                const toastElList = document.querySelectorAll('.toast');
+                [...toastElList].map(toastEl => setTimeout(() => toastEl.remove(), 3000));
+            </script>
+        @endsession
         @yield('content')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

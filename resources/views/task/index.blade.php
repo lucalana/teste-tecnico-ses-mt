@@ -4,14 +4,14 @@
     <h1 class="text-white">Tarefas</h1>
     <div class="my-5">
         <div class="py-3">
-            <a href="{{ route('home') }}">
+            <a href="{{ route('home') }}" class="text-decoration-none">
                 <span class="badge text-bg-dark badge-dark">Todas</span>
             </a>
-            <a href="{{ route('home', ['status' => 'Concluído']) }}">
+            <a href="{{ route('home', ['status' => 'Concluída']) }}" class="text-decoration-none">
                 <span class="badge text-bg-success badge-success">Concluidas</span>
             </a>
-            <a href="{{ route('home', ['status' => 'Pendente']) }}">
-                <span class="badge text-bg-secondary border badge-secondary">Pendentes</span>
+            <a href="{{ route('home', ['status' => 'Pendente']) }}" class="text-decoration-none">
+                <span class="badge text-bg-light badge-light">Pendentes</span>
             </a>
         </div>
         <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -35,12 +35,19 @@
                     </h2>
                     <div id="panelsStayOpen-collapse{{ $task->id }}" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            <div class="d-flex flex-column gap-2">
+                            <div class="d-flex flex-column">
                                 <span class="fs-5">
                                     {{ $task->description }}
                                 </span>
-                                <span class="fs-6 fw-lighter text-end">
-                                    Criado em: {{ $task->created_at->format('d/m/Y') }}
+                                <span class="d-flex justify-content-between pt-5">
+                                    <form action="{{ route('delete.task', $task->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger btn-sm">Deletar</button>
+                                    </form>
+                                    <span class="fs-6 fw-lighter">
+                                        Criado em: {{ $task->created_at->format('d/m/Y') }}
+                                    </span>
                                 </span>
                             </div>
                         </div>

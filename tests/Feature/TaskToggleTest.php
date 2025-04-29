@@ -12,7 +12,7 @@ it('should change the task status', function () {
     actingAs($user);
     get(route('toggle.status', $task->id))->assertRedirect();
 
-    expect($task)->refresh()->status->toBe('Concluído');
+    expect($task)->refresh()->status->toBe('Concluída');
 });
 
 it('should not found the page', function () {
