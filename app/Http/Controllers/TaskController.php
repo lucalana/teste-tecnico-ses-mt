@@ -12,4 +12,12 @@ class TaskController extends Controller
             'tasks' => Task::query()->status(request()->get('status', ''))->paginate(),
         ]);
     }
+
+    public function toggleStatus(Task $task)
+    {
+        $task->status = $task->status == 'Concluído' ? 'Pendente' : 'Concluído';
+        $task->save();
+
+        return redirect()->back();
+    }
 }

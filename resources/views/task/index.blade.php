@@ -24,11 +24,13 @@
                             <span class="pe-3">
                                 <strong>{{ $task->title }} </strong>
                             </span>
-                            @if ($task->status == 'Pendente')
-                                <span class="badge text-bg-secondary">{{ $task->status }}</span>
-                            @else
-                                <span class="badge text-bg-success">{{ $task->status }}</span>
-                            @endif
+                            <a href="{{ route('toggle.status', $task->id) }}">
+                                @if ($task->status == 'Pendente')
+                                    <span class="badge text-bg-secondary">{{ $task->status }}</span>
+                                @else
+                                    <span class="badge text-bg-success">{{ $task->status }}</span>
+                                @endif
+                            </a>
                         </button>
                     </h2>
                     <div id="panelsStayOpen-collapse{{ $task->id }}" class="accordion-collapse collapse">
