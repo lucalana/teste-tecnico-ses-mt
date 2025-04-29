@@ -68,3 +68,10 @@ Para garantir que tudo funcione corretamente siga as instruções de instalaçã
     - Dentro da aplicação é possível filtrar as tarefas entre todas, pendentes e concluídas
     - É possível alterar uma tarefa de pendente para concluída, clicando no status ao lado do título da tarefa
     - É possível editar uma tarefa, deletar e criar
+
+## 🧪 Teste
+
+-   Para rodar todos os testes execute o comando 
+    ```sh
+    php artisan test
+    ```
