@@ -10,7 +10,7 @@ class TaskController extends Controller
     public function index()
     {
         return view('task.index', [
-            'tasks' => Task::query()->status(request()->get('status', ''))->paginate(),
+            'tasks' => Task::query()->status(request()->get('status', ''))->orderByDesc('id')->paginate(),
         ]);
     }
 
