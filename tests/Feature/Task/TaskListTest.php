@@ -34,9 +34,33 @@ it('should always bring the auth user task', function () {
     expect(Task::query()->get())->toHaveCount(30);
 });
 
-it('should have the tasks variable', function () {
+it('should list all tasks', function () {
     $user = User::factory()->create();
+    Task::factory(30)->recycle($user)->create();
     actingAs($user);
-
-    get(route('home'))->assertViewHas('tasks', Task::query()->paginate());
+    $tasks = collect(Task::query()->status('')->paginate()->items())
+        ->map(fn($task) => $task->title)
+        ->toArray();
+    get(route('home'))->assertOk()->assertSeeTextInOrder($tasks);
 });
+
+it('should list only completed tasks', function () {
+    $user = User::factory()->create();
+    Task::factory(30)->recycle($user)->create();
+    actingAs($user);
+    $tasks = collect(Task::query()->status('Concluída')->paginate()->items())
+        ->map(fn($task) => $task->title)
+        ->toArray();
+    get(route('home', ['status' => 'Concluída']))->assertOk()->assertSeeTextInOrder($tasks);
+});
+
+it('should list only pending tasks', function () {
+    $user = User::factory()->create();
+    Task::factory(30)->recycle($user)->create();
+    actingAs($user);
+    $tasks = collect(Task::query()->status('Pendente')->paginate()->items())
+        ->map(fn($task) => $task->title)
+        ->toArray();
+    get(route('home', ['status' => 'Pendente']))->assertOk()->assertSeeTextInOrder($tasks);
+});
+

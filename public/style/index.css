@@ -1,0 +1,11 @@
+.badge-success:hover {
+    background-color: #306b4f !important;
+}
+
+.badge-dark:hover {
+    background-color: #474b4f !important;
+}
+
+.badge-secondary:hover {
+    background-color: #53575b !important;
+}

@@ -3,6 +3,17 @@
 @section('content')
     <h1 class="text-white">Tarefas</h1>
     <div class="my-5">
+        <div class="py-3">
+            <a href="{{ route('home') }}">
+                <span class="badge text-bg-dark badge-dark">Todas</span>
+            </a>
+            <a href="{{ route('home', ['status' => 'Concluído']) }}">
+                <span class="badge text-bg-success badge-success">Concluidas</span>
+            </a>
+            <a href="{{ route('home', ['status' => 'Pendente']) }}">
+                <span class="badge text-bg-secondary border badge-secondary">Pendentes</span>
+            </a>
+        </div>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             @foreach ($tasks as $task)
                 <div class="accordion-item">
@@ -36,7 +47,9 @@
             @endforeach
             <div class="accordion-item">
                 <div class="accordion-header pt-3">
-                    {{ $tasks->links() }}
+                    {{ $tasks->appends([
+                            'status' => request()->get('status'),
+                        ])->links() }}
                 </div>
             </div>
         </div>

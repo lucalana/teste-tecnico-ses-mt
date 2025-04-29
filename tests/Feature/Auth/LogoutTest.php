@@ -12,5 +12,5 @@ it('should logout an user', function () {
     $request = post(route('logout'));
 
     assertGuest();
-    $request->assertRedirect(route('register.form'));
+    $request->assertRedirect(route('login.form'));
 });
