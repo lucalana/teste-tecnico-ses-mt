@@ -3,16 +3,21 @@
 @section('content')
     <h1 class="text-white">Tarefas</h1>
     <div class="my-5">
-        <div class="py-3">
-            <a href="{{ route('home') }}" class="text-decoration-none">
-                <span class="badge text-bg-dark badge-dark">Todas</span>
-            </a>
-            <a href="{{ route('home', ['status' => 'Concluída']) }}" class="text-decoration-none">
-                <span class="badge text-bg-success badge-success">Concluidas</span>
-            </a>
-            <a href="{{ route('home', ['status' => 'Pendente']) }}" class="text-decoration-none">
-                <span class="badge text-bg-light badge-light">Pendentes</span>
-            </a>
+        <div class="py-3 d-flex flex-row justify-content-between">
+            <div>
+                <a href="{{ route('home') }}" class="text-decoration-none">
+                    <span class="badge text-bg-dark badge-dark">Todas</span>
+                </a>
+                <a href="{{ route('home', ['status' => 'Concluída']) }}" class="text-decoration-none">
+                    <span class="badge text-bg-success badge-success">Concluidas</span>
+                </a>
+                <a href="{{ route('home', ['status' => 'Pendente']) }}" class="text-decoration-none">
+                    <span class="badge text-bg-light badge-light">Pendentes</span>
+                </a>
+            </div>
+            <div>
+                <a class="btn btn-secondary border" href="{{ route('create.task') }}">Criar Tarefa</a>
+            </div>
         </div>
         <div class="accordion" id="accordionPanelsStayOpenExample">
             @foreach ($tasks as $task)
@@ -59,7 +64,7 @@
                 </div>
             @endforeach
             <div class="accordion-item">
-                <div class="accordion-header pt-3">
+                <div class="accordion-header pt-3 px-3">
                     {{ $tasks->appends([
                             'status' => request()->get('status'),
                         ])->links() }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
 
@@ -40,5 +41,22 @@ class TaskController extends Controller
 
         return to_route('home', ['status' => $task->status])
             ->with('message', 'Tarefa "' . $task->title . '" alterada.');
+    }
+
+    public function create()
+    {
+        return view('task.create');
+    }
+
+    public function store(StoreTaskRequest $request)
+    {
+        Task::query()->create([
+            ...$request->validated(),
+            'status' => 'Pendente',
+            'user_id' => auth()->id(),
+        ]);
+
+        return to_route('home', ['status' => 'Pendente'])
+            ->with('message', 'Tarefa "' . $request->get('title') . '" criada.');
     }
 }

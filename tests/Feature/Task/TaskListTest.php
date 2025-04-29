@@ -38,7 +38,7 @@ it('should list all tasks', function () {
     $user = User::factory()->create();
     Task::factory(30)->recycle($user)->create();
     actingAs($user);
-    $tasks = collect(Task::query()->status('')->paginate()->items())
+    $tasks = collect(Task::query()->status('')->orderByDesc('id')->paginate()->items())
         ->map(fn($task) => $task->title)
         ->toArray();
     get(route('home'))->assertOk()->assertSeeTextInOrder($tasks);
@@ -48,7 +48,7 @@ it('should list only completed tasks', function () {
     $user = User::factory()->create();
     Task::factory(30)->recycle($user)->create();
     actingAs($user);
-    $tasks = collect(Task::query()->status('Concluída')->paginate()->items())
+    $tasks = collect(Task::query()->status('Concluída')->orderByDesc('id')->paginate()->items())
         ->map(fn($task) => $task->title)
         ->toArray();
     get(route('home', ['status' => 'Concluída']))->assertOk()->assertSeeTextInOrder($tasks);
@@ -58,7 +58,7 @@ it('should list only pending tasks', function () {
     $user = User::factory()->create();
     Task::factory(30)->recycle($user)->create();
     actingAs($user);
-    $tasks = collect(Task::query()->status('Pendente')->paginate()->items())
+    $tasks = collect(Task::query()->status('Pendente')->orderByDesc('id')->paginate()->items())
         ->map(fn($task) => $task->title)
         ->toArray();
     get(route('home', ['status' => 'Pendente']))->assertOk()->assertSeeTextInOrder($tasks);

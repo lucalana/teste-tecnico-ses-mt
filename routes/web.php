@@ -18,4 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/deletar-task/{task}', [TaskController::class, 'deleteTask'])->name('delete.task');
     Route::get('/editar-task/{task}', [TaskController::class, 'edit'])->name('edit.task');
     Route::put('/editar-task/{task}', [TaskController::class, 'update'])->name('update.task');
+    Route::get('/criar-tarefa', [TaskController::class, 'create'])->name('create.task');
+    Route::post('/criar-tarefa', [TaskController::class, 'store'])->name('store.task');
 });
