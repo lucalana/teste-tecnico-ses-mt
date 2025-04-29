@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
     public function index()
     {
-        return view('task.index');
+        return view('task.index', [
+            'tasks' => Task::query()->paginate(),
+        ]);
     }
 }

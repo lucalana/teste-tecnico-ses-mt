@@ -20,7 +20,7 @@ class TaskFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => fake()->sentence(2),
-            'description' => fake()->realText(40),
+            'description' => fake()->realText(100),
             'status' => fake()->randomElement(['Pendente', 'Concluído']),
         ];
     }
